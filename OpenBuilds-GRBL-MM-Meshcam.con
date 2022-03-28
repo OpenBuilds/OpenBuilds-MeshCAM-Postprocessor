@@ -1,0 +1,42 @@
+; MeshCAM config
+; This config is the basis for the minimum
+; gcode output. If you're looking for
+; the shortest output file then this is the config
+; to start with.  Also show how to integrate CutViewer config into
+; the output.
+;
+; 2/29/04 	Changed comments to be enclosed by () rather than start with ;
+;		Added CutViewer config output
+; 5/13/04 	Added toolchange gcode
+; 2/12/05	Changed name and added units
+; 3/17/05	Changed stock definition to use CUTVIEWERSTOCK variable
+; 5/19/05	Removed feedrate command for rapid moves
+; 5/25/05	Added dummy tool for CutViewer
+; 6/27/05	Changed the formats to 1.4 to get 4 decimal places of accuracy
+; 5/21/14	Changed to Shapeoko, removed %
+; 12/5/14   Changed precision and removed Cutviewer info
+; 28/03/2022 OpenBuilds Version
+;
+
+DESCRIPTION = "OpenBuilds Grbl-MM(*.gcode)"
+FILE_EXTENSION = "gcode"
+UNITS = MM
+;Feeds
+FORMAT = [F|#|F|1.1]
+;Moves
+FORMAT = [X|#|X|1.2]
+FORMAT = [Y|#|Y|1.2]
+FORMAT = [Z|#|Z|1.2]
+;
+;START = "(FILENAME: [FILENAME])"
+START = "G21"
+START = "G90"
+TOOLCHANGE = "(M6 [T])"
+
+RAPID_RATE_MOVE        = "G0[X][Y][Z]"
+;
+FIRST_FEED_RATE_MOVE   = "G1[X][Y][Z][F]"
+FEED_RATE_MOVE         = "[X][Y][Z]"
+;
+END = "(END)"
+END = "(OF PROGRAM)"
